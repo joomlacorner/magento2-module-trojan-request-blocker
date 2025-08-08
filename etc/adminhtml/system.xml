@@ -30,6 +30,55 @@
                     </depends>
                 </field>
             </group>
+            <group id="magedin_fake_user_restriction" translate="label" type="text" sortOrder="3001" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Fake User Registration Restriction</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable Fake User Restriction</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="blocked_email_domains" translate="label" type="textarea" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Blocked Email Domains</label>
+                    <comment>Enter email domains to block (one per line). Example: temp-mail.org, 10minutemail.com</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="blocked_email_addresses" translate="label" type="textarea" sortOrder="25" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Blocked Email Addresses</label>
+                    <comment>Enter specific email addresses to block (one per line). Example: test@example.com, fake@domain.com</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="blocked_first_name_patterns" translate="label" type="textarea" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Blocked First Name Patterns</label>
+                    <comment>Enter patterns to block in first names (one per line). Example: test, fake, admin</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="blocked_last_name_patterns" translate="label" type="textarea" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Blocked Last Name Patterns</label>
+                    <comment>Enter patterns to block in last names (one per line). Example: test, fake, admin</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="error_message" translate="label" type="text" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Error Message</label>
+                    <comment>Message to display when registration is blocked</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
         </section>
     </system>
 </config>

@@ -23,6 +23,14 @@ class Config
 {
     private const XPATH_ENABLED = 'system/magedin_trojan_request_blocker/enabled';
     private const XPATH_ADDITIONAL_PATTERNS = 'system/magedin_trojan_request_blocker/additional_patterns';
+    
+    // Fake user restriction constants
+    private const XPATH_FAKE_USER_ENABLED = 'system/magedin_fake_user_restriction/enabled';
+    private const XPATH_BLOCKED_EMAIL_DOMAINS = 'system/magedin_fake_user_restriction/blocked_email_domains';
+    private const XPATH_BLOCKED_EMAIL_ADDRESSES = 'system/magedin_fake_user_restriction/blocked_email_addresses';
+    private const XPATH_BLOCKED_FIRST_NAME_PATTERNS = 'system/magedin_fake_user_restriction/blocked_first_name_patterns';
+    private const XPATH_BLOCKED_LAST_NAME_PATTERNS = 'system/magedin_fake_user_restriction/blocked_last_name_patterns';
+    private const XPATH_ERROR_MESSAGE = 'system/magedin_fake_user_restriction/error_message';
 
     /**
      * @var ScopeConfigInterface
@@ -67,5 +75,105 @@ class Config
         $value = explode(PHP_EOL, $value);
         $value = array_map('trim', $value);
         return (array) $value;
+    }
+
+    /**
+     * Check if fake user restriction is enabled
+     *
+     * @param string $scopeType
+     * @param null $scopeCode
+     * @return bool
+     */
+    public function isFakeUserRestrictionEnabled(
+        string $scopeType = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+        $scopeCode = null
+    ): bool {
+        return $this->scopeConfig->isSetFlag(self::XPATH_FAKE_USER_ENABLED, $scopeType, $scopeCode);
+    }
+
+    /**
+     * Get blocked email domains
+     *
+     * @param string $scopeType
+     * @param null $scopeCode
+     * @return array
+     */
+    public function getBlockedEmailDomains(
+        string $scopeType = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+        $scopeCode = null
+    ): array {
+        $value = (string) $this->scopeConfig->getValue(self::XPATH_BLOCKED_EMAIL_DOMAINS, $scopeType, $scopeCode);
+        $value = explode(PHP_EOL, $value);
+        $value = array_map('trim', $value);
+        $value = array_filter($value);
+        return array_map('strtolower', $value);
+    }
+
+    /**
+     * Get blocked email addresses
+     *
+     * @param string $scopeType
+     * @param null $scopeCode
+     * @return array
+     */
+    public function getBlockedEmailAddresses(
+        string $scopeType = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+        $scopeCode = null
+    ): array {
+        $value = (string) $this->scopeConfig->getValue(self::XPATH_BLOCKED_EMAIL_ADDRESSES, $scopeType, $scopeCode);
+        $value = explode(PHP_EOL, $value);
+        $value = array_map('trim', $value);
+        $value = array_filter($value);
+        return array_map('strtolower', $value);
+    }
+
+    /**
+     * Get blocked first name patterns
+     *
+     * @param string $scopeType
+     * @param null $scopeCode
+     * @return array
+     */
+    public function getBlockedFirstNamePatterns(
+        string $scopeType = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+        $scopeCode = null
+    ): array {
+        $value = (string) $this->scopeConfig->getValue(self::XPATH_BLOCKED_FIRST_NAME_PATTERNS, $scopeType, $scopeCode);
+        $value = explode(PHP_EOL, $value);
+        $value = array_map('trim', $value);
+        $value = array_filter($value);
+        return array_map('strtolower', $value);
+    }
+
+    /**
+     * Get blocked last name patterns
+     *
+     * @param string $scopeType
+     * @param null $scopeCode
+     * @return array
+     */
+    public function getBlockedLastNamePatterns(
+        string $scopeType = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+        $scopeCode = null
+    ): array {
+        $value = (string) $this->scopeConfig->getValue(self::XPATH_BLOCKED_LAST_NAME_PATTERNS, $scopeType, $scopeCode);
+        $value = explode(PHP_EOL, $value);
+        $value = array_map('trim', $value);
+        $value = array_filter($value);
+        return array_map('strtolower', $value);
+    }
+
+    /**
+     * Get error message for blocked registration
+     *
+     * @param string $scopeType
+     * @param null $scopeCode
+     * @return string
+     */
+    public function getFakeUserRestrictionErrorMessage(
+        string $scopeType = ScopeConfigInterface::SCOPE_TYPE_DEFAULT,
+        $scopeCode = null
+    ): string {
+        return (string) $this->scopeConfig->getValue(self::XPATH_ERROR_MESSAGE, $scopeType, $scopeCode);
     }
 }

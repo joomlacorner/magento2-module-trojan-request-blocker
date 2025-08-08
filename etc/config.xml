@@ -18,6 +18,45 @@
                 <enabled>1</enabled>
                 <additional_patterns/>
             </magedin_trojan_request_blocker>
+            <magedin_fake_user_restriction>
+                <enabled>1</enabled>
+                <blocked_email_domains>temp-mail.org
+10minutemail.com
+guerrillamail.com
+mailinator.com
+tempmail.com
+throwaway.email
+fakeinbox.com
+sharklasers.com
+getairmail.com
+mailnesia.com</blocked_email_domains>
+                <blocked_email_addresses>test@example.com
+fake@domain.com
+admin@test.com
+user@fake.org
+demo@example.net</blocked_email_addresses>
+                <blocked_first_name_patterns>test
+fake
+admin
+user
+demo
+guest
+anonymous
+temp
+temporary
+spam</blocked_first_name_patterns>
+                <blocked_last_name_patterns>test
+fake
+admin
+user
+demo
+guest
+anonymous
+temp
+temporary
+spam</blocked_last_name_patterns>
+                <error_message>Registration is not allowed with the provided information. Please use valid credentials.</error_message>
+            </magedin_fake_user_restriction>
         </system>
     </default>
 </config>

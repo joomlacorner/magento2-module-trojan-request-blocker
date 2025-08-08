@@ -17,6 +17,21 @@
                 type="MagedIn\TrojanRequestBlocker\Plugin\ValidateTrojanPostRequest" sortOrder="10"/>
     </type>
 
+    <type name="Magento\Customer\Api\AccountManagementInterface">
+        <plugin name="magedin_trb_validate_customer_registration"
+                type="MagedIn\TrojanRequestBlocker\Plugin\CustomerRegistration" sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Checkout\Api\GuestPaymentInformationManagementInterface">
+        <plugin name="magedin_trb_validate_guest_customer_registration"
+                type="MagedIn\TrojanRequestBlocker\Plugin\GuestCustomerRegistration" sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Checkout\Api\PaymentInformationManagementInterface">
+        <plugin name="magedin_trb_validate_registered_customer_checkout"
+                type="MagedIn\TrojanRequestBlocker\Plugin\RegisteredCustomerCheckout" sortOrder="10"/>
+    </type>
+
     <type name="MagedIn\TrojanRequestBlocker\Service\Patterns\DefaultPatterns">
         <arguments>
             <argument name="patterns" xsi:type="array">

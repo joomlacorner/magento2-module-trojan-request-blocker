@@ -9,6 +9,17 @@ Keep your Magento 2 store protected from suspicious and harmful requests with Ma
 - Magento 2.3
 - Magento 2.4
 
+## Features
+
+- **Trojan Request Blocking**: Detects and blocks malicious requests containing harmful code patterns
+- **Fake User Registration Restriction**: Prevents fake user registrations based on:
+  - Blocked email domains (e.g., temp-mail.org, 10minutemail.com)
+  - Blocked specific email addresses (e.g., test@example.com, fake@domain.com)
+  - Blocked first name patterns (e.g., test, fake, admin)
+  - Blocked last name patterns (e.g., test, fake, admin)
+- **Admin Configuration**: Easy-to-use admin panel for managing blocked patterns and domains
+- **Checkout Protection**: Validates both guest and registered customer checkout processes
+
 ## Context
 
 Have you ever seen any order like the following one in your Magento 2 website?
@@ -36,6 +47,32 @@ To get a full explanation of what's the problem here, please refer to this blog 
 [Protecting Your Magento Store from Trojan Orders: Introducing the Trojan Request Blocker](https://wp.me/p8DGlE-2k5)
 
 There you'll have a video explaining how it works and how you can use it.
+
+## Fake User Registration Restriction Configuration
+
+The extension includes a powerful fake user registration restriction feature that helps prevent fake accounts from being created. To configure this feature:
+
+1. Go to **Admin Panel > Stores > Configuration > System > Fake User Registration Restriction**
+2. Enable the "Enable Fake User Restriction" option
+3. Configure the following settings:
+   - **Blocked Email Domains**: Add email domains to block (one per line)
+     - Example: `temp-mail.org`, `10minutemail.com`, `guerrillamail.com`
+   - **Blocked Email Addresses**: Add specific email addresses to block (one per line)
+     - Example: `test@example.com`, `fake@domain.com`, `admin@test.com`
+   - **Blocked First Name Patterns**: Add patterns to block in first names (one per line)
+     - Example: `test`, `fake`, `admin`, `user`
+   - **Blocked Last Name Patterns**: Add patterns to block in last names (one per line)
+     - Example: `test`, `fake`, `admin`, `user`
+   - **Error Message**: Customize the error message shown when registration is blocked
+
+### How It Works
+
+The extension validates customer registration data during:
+- **Customer Account Creation**: When users create new accounts
+- **Guest Checkout**: When guests place orders without creating accounts
+- **Registered Customer Checkout**: When registered customers update their information
+
+If any of the configured patterns are detected in the email domain, specific email address, first name, or last name, the registration/checkout process will be blocked with the configured error message.
 
 ## Further Reading
 
